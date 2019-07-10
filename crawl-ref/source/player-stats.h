@@ -35,3 +35,4 @@ bool have_stat_zero();
 void update_stat_zero(int time);
 
 int innate_stat(stat_type s);
+void bol_xi_stat_shuffle();

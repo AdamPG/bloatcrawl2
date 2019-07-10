@@ -544,6 +544,9 @@ static void _setup_generic(const newgame_def& ng)
 
     species_stat_init(you.species);     // must be down here {dlb}
 
+    if (ng.species == SP_BOL_XI)
+        bol_xi_aptitude_shuffle();
+
     // Before we get into the inventory init, set light radius based
     // on species vision.
     update_vision_range();

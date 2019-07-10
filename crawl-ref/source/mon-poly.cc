@@ -27,6 +27,7 @@
 #include "mon-gear.h"
 #include "mon-place.h"
 #include "mon-tentacle.h"
+#include "mon-util.h"
 #include "notes.h"
 #include "religion.h"
 #include "state.h"
@@ -674,4 +675,7 @@ void seen_monster(monster* mons)
 
     if (mons_allows_beogh(*mons))
         env.level_state |= LSTATE_BEOGH;
+
+    if (you.has_mutation(MUT_BOL_XI))
+        bol_xi_affect_mon(mons);
 }
