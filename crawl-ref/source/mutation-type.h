@@ -51,6 +51,7 @@ enum mutation_type
     MUT_PROTEAN_BODY,
     MUT_HUNGRY_DEAD,
     MUT_SEMI_UNDEAD,
+    MUT_BLOOD_MAGIC,
 #endif
     MUT_ACUTE_VISION,
     MUT_AGILE,
@@ -247,6 +248,7 @@ enum mutation_type
     MUT_PROTEAN_BODY,
     MUT_HUNGRY_DEAD,
     MUT_SEMI_UNDEAD,
+    MUT_BLOOD_MAGIC,
 #endif
     NUM_MUTATIONS,
     CATEGORY_MUTATIONS,

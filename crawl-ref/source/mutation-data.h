@@ -2035,7 +2035,16 @@ static const mutation_def mut_data[] =
    {"You can transition from alive to undead at will.", "", ""},
    {"", "", ""},
    {"", "", ""},
-}
+},
+
+{ MUT_BLOOD_MAGIC, 0, 1, mutflag::good, false,
+   "blood magic",
+
+   {"Blood Magic: Casting spells costs health as well as magic.\n"
+    "Blood Magic: The effect of armour encumbrance is reduced for lower level spells.", "", ""},
+   {"", "", ""},
+   {"", "", ""},
+},
 };
 
 static const mutation_category_def category_mut_data[] =

@@ -153,8 +153,8 @@ magical experts.
 %%%%
 Flan
 
-Flans are gelatinous and slightly corrosive beings. Their fluid shape lets them fit
-easily into any body armour, but they cannot wear other armour types.
+Flans are gelatinous and slightly corrosive beings. Their fluid shape lets them
+fit easily into any body armour, but they cannot wear other armour types.
 %%%%
 Leprechaun
 
@@ -176,3 +176,7 @@ Protean
 Proteans are a race of vaguely humanoid amoebas. Mutations increase their health
 pool, and their health pool controls their size.
 %%%%
+Irit
+
+Irits are magical, brutish humanoids. They are adept at casting spells in heavy
+armour, although it costs them life force to do so.
