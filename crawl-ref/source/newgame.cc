@@ -1440,7 +1440,7 @@ static job_group jobs_order[] =
         coord_def(15, 0), 20,
         { JOB_ARTIFICER, JOB_WANDERER, JOB_ANARCHIST, JOB_UNDERSTUDY,
           JOB_METEOROLOGIST, JOB_UNCLE, JOB_ENTOMOLOGIST, JOB_DEPRIVED,
-          JOB_PHILOSOPHER }
+          JOB_PHILOSOPHER, JOB_ARCHAEOLOGIST, }
     },
     {
         "Zealot",
