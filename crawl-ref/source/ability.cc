@@ -16,6 +16,7 @@
 
 #include "abyss.h"
 #include "acquire.h"
+#include "act-iter.h"
 #include "areas.h"
 #include "art-enum.h"
 #include "branch.h"
@@ -338,6 +339,8 @@ static const ability_def Ability_List[] =
     { ABIL_CHARM, "Charm Monsters", 0, 0, 0, 0, {}, abflag::exhaustion },
 
     { ABIL_POWERSQUAT, "Powersquat", 0, 0, 0, 0, {}, abflag::none },
+
+    { ABIL_ARGON_FLASH, "Argon Flash", 0, 0, 0, 0, {}, abflag::none },
 
     // EVOKE abilities use Evocations and come from items.
     // Teleportation and Blink can also come from mutations
@@ -2044,6 +2047,28 @@ static spret _do_ability(const ability_def& abil, bool fail)
         notify_stat_change(STAT_STR, you.base_stats[STAT_INT] / 2, true);
         break;
 
+    case ABIL_ARGON_FLASH:
+        if (you.argon_flashes_available == 0)
+        {
+            mpr("You do not have the energy to flash.");
+            return spret::abort;
+        }
+        you.argon_flashes_available--;
+
+        flash_view(UA_PLAYER, YELLOW);
+        mpr("You emit a blinding flash of light!");
+        for (monster_iterator mi; mi; ++mi)
+        {
+            dprf("%s: see: %d blind: %d", mi->name(DESC_THE).c_str(), you.see_cell(mi->pos()), mons_can_be_blinded(mi->type));
+            if (you.see_cell(mi->pos()) && mons_can_be_blinded(mi->type))
+            {
+                if (you.can_see(**mi))
+                    mprf(MSGCH_GOD, "You blind %s!", mi->name(DESC_THE).c_str());
+                mi->add_ench(mon_enchant(ENCH_BLIND, 1, &you, 100+random2(100)));
+            }
+        }
+        break;
+
     case ABIL_SPIT_POISON:      // Naga poison spit
     {
         int power = 10 + you.experience_level;
@@ -3603,6 +3628,9 @@ vector<talent> your_talents(bool check_confused, bool include_unusable)
 
     if (you.attribute[ATTR_PERM_FLIGHT] && you.racial_permanent_flight())
         _add_talent(talents, ABIL_STOP_FLYING, check_confused);
+
+    if (you.species == SP_ARGON)
+        _add_talent(talents, ABIL_ARGON_FLASH, check_confused);
 
     // Mutations
     if (you.get_mutation_level(MUT_HURL_DAMNATION))

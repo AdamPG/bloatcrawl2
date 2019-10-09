@@ -304,7 +304,7 @@ void give_items_skills(const newgame_def& ng)
             you.skills[SK_ARMOUR]++;
 
         break;
-        
+
     case JOB_BOUND:
         you.religion = GOD_ASHENZARI;
         you.piety = 35;
@@ -314,7 +314,7 @@ void give_items_skills(const newgame_def& ng)
         else
             you.skills[SK_ARMOUR]++;
         break;
-        
+
     case JOB_TORPOR_KNIGHT:
         you.religion = GOD_CHEIBRIADOS;
         you.piety = 35;
@@ -324,7 +324,7 @@ void give_items_skills(const newgame_def& ng)
         else
             you.skills[SK_ARMOUR]++;
         break;
-        
+
     case JOB_PALADIN:
         you.religion = GOD_SHINING_ONE;
         you.piety = 35;
@@ -334,7 +334,7 @@ void give_items_skills(const newgame_def& ng)
         else
             you.skills[SK_ARMOUR]++;
         break;
-        
+
     case JOB_SLIME_PRIEST:
         you.religion = GOD_JIYVA;
         you.piety = 5;
@@ -344,7 +344,7 @@ void give_items_skills(const newgame_def& ng)
         else
             you.skills[SK_ARMOUR]++;
         break;
-        
+
     case JOB_BLOOD_KNIGHT:
         you.religion = GOD_MAKHLEB;
         you.piety = 35;
@@ -354,7 +354,7 @@ void give_items_skills(const newgame_def& ng)
         else
             you.skills[SK_ARMOUR]++;
         break;
-        
+
     case JOB_STORM_CLERIC:
         you.religion = GOD_QAZLAL;
         you.piety = 35;
@@ -364,29 +364,29 @@ void give_items_skills(const newgame_def& ng)
         else
             you.skills[SK_ARMOUR]++;
         break;
-        
+
     case JOB_DEATH_BISHOP:
         you.religion = GOD_YREDELEMNUL;
         add_spell_to_memory(SPELL_PAIN);
         you.piety = 35;
         break;
-        
+
     case JOB_GAMBLER:
         you.religion = GOD_NEMELEX_XOBEH;
         you.piety = 35;
         you.gift_timeout = 1;
         break;
-        
+
     case JOB_DOCTOR:
         you.religion = GOD_ELYVILON;
         you.piety = 35;
         break;
-        
+
     case JOB_GARDENER:
         you.religion = GOD_FEDHAS;
         you.piety = 35;
         break;
-        
+
     case JOB_HERMIT:
     {
         you.religion = GOD_RU;
@@ -403,49 +403,49 @@ void give_items_skills(const newgame_def& ng)
         you.props[RU_SACRIFICE_PENALTY_KEY] = 0;
     }
         break;
-        
+
     case JOB_WARRIOR:
         you.religion = GOD_OKAWARU;
         you.piety = 35;
         break;
-        
+
     case JOB_WITNESS:
         you.religion = GOD_BEOGH;
         you.piety = 35;
         break;
-        
+
     case JOB_KIKUMANCER:
         you.religion = GOD_KIKUBAAQUDGHA;
         you.piety = 35;
         break;
-        
+
     case JOB_ZINJA:
         you.religion = GOD_ZIN;
         you.piety = 35;
         break;
-        
+
     case JOB_NIGHT_KNIGHT:
         you.religion = GOD_DITHMENOS;
         you.piety = 35;
         break;
-        
+
     case JOB_DISCIPLE:
         you.religion = GOD_WU_JIAN;
         you.piety = 35;
         break;
-        
+
     case JOB_MERCHANT:
         you.religion = GOD_GOZAG;
         you.gold = 1;
         break;
-        
+
     case JOB_ANNIHILATOR:
         you.religion = GOD_VEHUMET;
         you.piety = 35;
         add_spell_to_memory(SPELL_MAGIC_DART);
         you.gift_timeout = roll_dice(2, 5);
-        break;   
-        
+        break;
+
     case JOB_LIBRARIAN:
     {
         you.religion = GOD_SIF_MUNA;
@@ -454,7 +454,7 @@ void give_items_skills(const newgame_def& ng)
         librarian_book();
         break;
     }
-        
+
     case JOB_INHERITOR:
     {
         you.religion = GOD_HEPLIAKLQANA;
@@ -465,7 +465,7 @@ void give_items_skills(const newgame_def& ng)
                                                          : GENDER_MALE;
         break;
     }
-		
+
     case JOB_DANCER:
         you.religion = GOD_USKAYAW;
         you.piety = 200; //you had a really good party right before entering the dungeon
@@ -748,6 +748,14 @@ static void _setup_generic(const newgame_def& ng)
     if (ng.species == SP_SHAPESHIFTER)
         you.shapeshifter_species = true;
 
+    // Only relevant for Argons, but saved for every species
+    you.vaporous_resistance_fire = 0;
+    you.vaporous_resistance_cold = 0;
+    you.vaporous_resistance_neg = 0;
+    you.vaporous_resistance_elec = 0;
+    you.vaporous_resistance_poison = 0;
+    you.argon_flashes_available = 0;
+
     species_stat_init(you.species);     // must be down here {dlb}
 
     // Before we get into the inventory init, set light radius based
@@ -835,7 +843,7 @@ static void _setup_generic(const newgame_def& ng)
     // Make sure the starting player is fully charged up.
     set_hp(you.hp_max);
     set_mp(you.max_magic_points);
-    
+
     //Mutate Slime Priest
     if (you.char_class == JOB_SLIME_PRIEST)
     {

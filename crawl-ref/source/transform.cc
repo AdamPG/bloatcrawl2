@@ -1600,7 +1600,7 @@ bool transform(int pow, transformation which_trans, bool involuntary,
         return false;
     }
 
-    if (you.species == SP_PROTEAN)
+    if (you.species == SP_PROTEAN || you.has_mutation(MUT_VAPOROUS_BODY))
     {
         msg = "You cannot transform.";
         success = false;
